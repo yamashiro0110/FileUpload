@@ -26,7 +26,7 @@ public class UserFileUploadJsonController {
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public @ResponseBody String uploadByJson(@RequestPart("user") String json, @RequestPart("file") MultipartFile file) {
-        User user = convert(json);
+        final User user = convert(json);
 
         return new StringBuilder()
                 .append("user:").append(user.toString()).append(",")
