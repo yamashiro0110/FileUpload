@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>user file</title>
+</head>
+<body>
+<form th:object="${user}" method="post" enctype="multipart/form-data" th:action="@{/user/upload}">
+    <ul>
+      <li>
+        file:<input type="file" name="file"/>
+      </li>
+      <li>
+        firstName:<input type="text" th:field="*{firstName}"/>
+      </li>
+      <li>
+        lastName:<input type="text" th:field="*{lastName}"/>
+      </li>
+      <li>
+        age:<input type="number" th:field="*{age}"/>
+      </li>
+    </ul>
+    <input type="submit" value="submit"/>
+</form>
+</body>
+</html>
