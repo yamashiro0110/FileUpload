@@ -10,7 +10,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class UserFileUploadJsonController {
 
     @RequestMapping(value = "str", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    @ResponseBody
     public String uploadByJson(@RequestPart("user") String json, @RequestPart("file") MultipartFile file) {
         return new StringBuilder()
                 .append("user:").append(json).append(",")
@@ -19,7 +18,6 @@ public class UserFileUploadJsonController {
     }
 
     @RequestMapping(value = "type", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    @ResponseBody
     public String uploadByJson(@RequestPart("user") User user, @RequestPart("file") MultipartFile file) {
         return new StringBuilder()
                 .append("user:").append(user.toString()).append(",")
