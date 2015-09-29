@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class UserFileUploadJsonController {
 
     @RequestMapping(value = "str", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public String uploadByJson(@RequestPart("user") String json, @RequestPart("file") MultipartFile file) {
+    public String uploadStringAndFile(@RequestPart("user") String json, @RequestPart("file") MultipartFile file) {
         return new StringBuilder()
                 .append("user:").append(json).append(",")
                 .append("fileName:").append(file.getOriginalFilename())
@@ -24,7 +24,7 @@ public class UserFileUploadJsonController {
     }
 
     @RequestMapping(value = "type", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public String uploadByJson(@RequestPart("user") User user, @RequestPart("file") MultipartFile file) {
+    public String uploadUserAndFile(@RequestPart("user") User user, @RequestPart("file") MultipartFile file) {
         return new StringBuilder()
                 .append("user:").append(user.toString()).append(",")
                 .append("fileName:").append(file.getOriginalFilename())
