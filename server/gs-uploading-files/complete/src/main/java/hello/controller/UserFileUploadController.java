@@ -21,7 +21,9 @@ public class UserFileUploadController {
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public @ResponseBody String uploadWithUser(@RequestPart("user") User user, @RequestPart(value = "file", required = false) MultipartFile file) {
+    public @ResponseBody String uploadWithUser(
+            @RequestPart("user") User user,
+            @RequestPart(value = "file", required = false) MultipartFile file) {
         return new StringBuilder()
                 .append("user:").append(user.toString()).append(",")
                 .append("fileName:").append(file.getOriginalFilename())

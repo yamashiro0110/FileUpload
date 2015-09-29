@@ -22,10 +22,11 @@ public class RequestTest {
         test.postUserFile();
         test.postUserFileJsonString();
         test.postUserFileJsonType();
+        test.postUserFileJsonFiles();
         test.getImage();
     }
 
-    private static final String HOST = "http://localhost:8888";
+    private static final String HOST = "http://localhost:18080";
     private final User user = new User("hoge", "fuga", 20);
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final FileSystemResource resource = new FileSystemResource("hogehoge.jpg");
@@ -75,6 +76,20 @@ public class RequestTest {
         MultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
         map.add("user", user);
         map.add("file", resource);
+        HttpEntity<?> httpEntity = new HttpEntity<>(map, headers);
+        RestTemplate template = new RestTemplate();
+        ResponseEntity<String> responseEntity = template.exchange(url, HttpMethod.POST, httpEntity, String.class);
+        dump(responseEntity);
+    }
+
+    private void postUserFileJsonFiles() {
+        final String url = HOST + "/user/file/json/files";
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+        MultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
+        map.add("user", user);
+        map.add("file", new FileSystemResource("src/main/resources/static/img/owada-1.jpg"));
+        map.add("file", new FileSystemResource("src/main/resources/static/img/owada-2.jpg"));
         HttpEntity<?> httpEntity = new HttpEntity<>(map, headers);
         RestTemplate template = new RestTemplate();
         ResponseEntity<String> responseEntity = template.exchange(url, HttpMethod.POST, httpEntity, String.class);
